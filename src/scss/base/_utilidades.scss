@@ -1,0 +1,15 @@
+.contenedor{
+    width: min(120rem, 100%);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+.centrar{
+    margin: 0 auto;
+    text-align: center;
+}
+.btn-margin-bottom{
+    margin-bottom: .5rem;
+}
+.btn-izq{
+    margin-left: 2rem;
+}

@@ -1,0 +1,27 @@
+// Base
+@use 'base/normalize';
+@use 'base/variables';
+@use 'base/botones';
+@use 'base/globales';
+@use 'base/utilidades';
+
+// UI
+@use 'layout/header';
+@use 'layout/navegacion';
+@use 'layout/login';
+@use 'layout/btnCarrito';
+@use 'layout/btnEliminar';
+@use 'layout/btnLogin';
+@use 'layout/home';
+@use 'layout/catalogo';
+@use 'layout/categoria';
+@use 'layout/producto';
+@use 'layout/carrito';
+@use 'layout/pagar';
+@use 'layout/footer';
+
+// Internas
+@use 'internas/alertas';
+@use 'internas/admin';
+@use 'internas/inventario';
+

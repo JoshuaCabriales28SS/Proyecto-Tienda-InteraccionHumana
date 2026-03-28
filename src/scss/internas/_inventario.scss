@@ -1,0 +1,61 @@
+@use "../base/variables";
+
+.inventario{
+    background-color: var(--color-surface-alt);
+    padding: 3rem 0 5rem;
+}
+.inventario-contenido{
+    h1{
+        padding: 0 0 2rem 0;
+        text-align: left;
+    }
+    .alerta{
+        padding: .5rem;
+        text-align: center;
+        color: variables.$blanco;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 1rem 0;
+    
+        &.error{
+            background-color: variables.$rojo;
+        }
+    
+        &.exito{
+            background-color: variables.$verde;
+        }
+    }
+}
+.btn-agregar{
+    margin: 0 auto;
+}
+.inventario-form{
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-card);
+
+    .campo{
+        display: flex;
+        flex-direction: column;
+        padding: .5rem 0;
+        font-weight: 600;
+        input[type='text'], input[type='number'],textarea, select{
+            padding: .8rem 1rem;
+            border-radius: .8rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-surface-alt);
+        }
+        textarea{
+            height: 8rem;
+            resize: none;
+        }
+    }
+}
+.cantidades{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}

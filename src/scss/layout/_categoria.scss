@@ -1,0 +1,19 @@
+@use "../base/variables";
+
+.categoria-main{
+    padding: 2.4rem 0 4rem;
+    background-color: var(--color-bg);
+}
+.categoria-encabezado{
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 2rem;
+
+    h1{
+        text-transform: capitalize;
+    }
+}
+.categoria-subtexto{
+    color: var(--color-muted);
+}

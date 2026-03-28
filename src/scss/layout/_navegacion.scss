@@ -1,0 +1,116 @@
+@use "../base/variables";
+
+.barra_nav{
+    background-color: variables.$azul;
+
+    .navegacion{
+        display: flex;
+        justify-content: space-around;
+
+        a{
+            text-transform: uppercase;
+            color: variables.$blanco;
+            padding: 1.5rem 1rem;
+            transition: .3s;
+            
+            &:hover {
+                background-color: variables.$azulOscuro;
+                transition: .3s;
+            }
+        }
+    }
+}
+
+.index-main {
+    display: grid;
+    grid-template-columns: minmax(220px, 260px) 1fr;
+    gap: 2.4rem;
+    padding: 2.4rem 0 4rem;
+}
+.index-content{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.aside {
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    height: fit-content;
+    position: sticky;
+    top: 7.5rem;
+}
+.aside-titulo{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.aside-lista{
+    display: grid;
+    gap: .8rem;
+}
+.aside-categoria {
+    text-transform: capitalize;
+    padding: .8rem 1rem;
+    border-radius: .9rem;
+    background-color: var(--color-surface-alt);
+    border: 1px solid transparent;
+    transition: .2s ease;
+    
+    &:hover {
+        border-color: var(--color-border);
+        transform: translateX(4px);
+    }
+}
+
+.hero{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.4rem;
+    align-items: center;
+    padding: 2.4rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+}
+.hero-eyebrow{
+    text-transform: uppercase;
+    letter-spacing: .24rem;
+    font-size: 1.1rem;
+    color: var(--color-muted);
+    margin-bottom: .6rem;
+}
+.hero-text{
+    margin: 1.2rem 0 1.6rem;
+    color: var(--color-muted);
+}
+.hero-acciones{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.hero-media{
+    display: flex;
+    justify-content: center;
+}
+.hero-media img{
+    border-radius: var(--radius-md);
+    max-height: 28rem;
+    object-fit: cover;
+}
+
+@media (max-width: 960px){
+    .index-main{
+        display: flex;
+        flex-direction: column;
+    }
+    .aside{
+        position: static;
+        order: 2;
+    }
+}

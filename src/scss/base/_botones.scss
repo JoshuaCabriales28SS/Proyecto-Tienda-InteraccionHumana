@@ -1,0 +1,132 @@
+@use "variables";
+
+// BOTONES
+.btn {
+    display: flex;
+    padding: .5rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-card);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    &:disabled,
+    &[disabled]{
+        opacity: .5;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+    }
+}
+.btn-naranja{
+    background-color: variables.$naranja;
+    color: variables.$blanco;
+    
+    &:hover {
+        background-color: variables.$naranjaOsc;
+    }
+}
+.btn-azul{
+    background-color: variables.$azul;
+    color: variables.$blanco;
+    
+    &:hover {
+        background-color: variables.$azulOscuro;
+    }
+}
+.btn-azulOsc{
+    background-color: variables.$azulOscuro;
+    color: variables.$blanco;
+    
+    &:hover {
+        background-color: variables.$azulOscuroM;
+    }
+}
+.btn-azulCl{
+    background-color: variables.$azulClaro;
+    color: variables.$negro;
+
+    &:hover {
+        background-color: variables.$azul;
+        color: variables.$blanco;
+    }
+}
+.btn-verde{
+    background-color: variables.$verde;
+    color: variables.$blanco;
+
+    &:hover {
+        background-color: variables.$verdeOscuro;
+    }
+}
+.btn-verdeOsc{
+    background-color: variables.$azul;
+    color: variables.$blanco;
+
+    &:hover {
+        background-color: variables.$azulOscuro;
+    }
+}
+.btn-rojo{
+    background-color: variables.$rojo;
+    color: variables.$blanco;
+
+    &:hover {
+        background-color: variables.$rojoOsc;
+    }
+}
+.btn-ghost{
+    background-color: transparent;
+    color: variables.$negro;
+    border: 1px solid var(--color-border);
+
+    &:hover{
+        background-color: var(--color-surface-alt);
+        color: variables.$negro;
+    }
+}
+.btn-hero{
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+}
+
+.btn-volver{
+    width: 3rem;
+    height: 3rem;
+    margin-left: 2rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.btn-comprar {
+    margin: 2rem auto 0 auto;
+    width: 16rem;
+    height: 4.2rem;
+    justify-content: center;
+    background-color: variables.$amarillo;
+    text-transform: uppercase;
+    gap: 1rem;
+    color: variables.$negro;
+}
+.btn-agregar{
+    width: 8rem;
+    justify-content: center;
+    gap: .5rem;
+    align-items: center;
+}
+.is-disabled{
+    opacity: .5;
+    pointer-events: none;
+}
