@@ -173,7 +173,7 @@
                                 <path d="M16 19h6" />
                                 <path d="M19 16v6" />
                             </svg>
-                            <h3>Comprar</h3>
+                            <h3>Agregar al carrito</h3>
                         </button>
                     </form>
                 </div>

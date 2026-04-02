@@ -1,4 +1,4 @@
-@use "variables";
+@use "../base/variables";
 
 // BOTONES
 .btn {
@@ -112,8 +112,8 @@
 }
 .btn-comprar {
     margin: 2rem auto 0 auto;
-    width: 16rem;
-    height: 4.2rem;
+    width: 20rem;
+    height: 5rem;
     justify-content: center;
     background-color: variables.$amarillo;
     text-transform: uppercase;
