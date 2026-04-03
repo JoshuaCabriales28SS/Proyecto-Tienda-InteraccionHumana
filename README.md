@@ -2,7 +2,7 @@
 
 ## Ejecutar proyecto  
 
-### Ejecutar comando de node para cambios de hojas de estilo (compilar)
+### Ejecutar comando de node para compilar los cambios de hojas de estilo
 
 ``` bash
 npm run dev
@@ -20,6 +20,11 @@ php -S localhost:8000
 localhost:8000/index.php
 ```  
 
-## Para entrar al modo admin, ingresar con el usuario y contraseña de prueba  
+## Para entrar al modo admin, ingresar con el usuario y contraseña de prueba
 
-## Para rellenar la BD, primero el modelo deben hacer Forward Engineer y despues ejecutar el script en MySQL (50 productos)
+```text
+username: correo@correo.com
+password: 123456
+```
+
+Para rellenar la BD, primero se debe hacer Forward Engineer al modelo ER y despues ejecutar el script en MySQL con 50 productos
