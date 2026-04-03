@@ -55,6 +55,7 @@
     $resultadoCategorias = mysqli_query($db, $queryCategorias);
     $categorias = $resultadoCategorias ? mysqli_fetch_all($resultadoCategorias, MYSQLI_ASSOC) : [];
     $categoriaSeleccionada = filter_var($_GET['categoria'] ?? null, FILTER_VALIDATE_INT);
+    
     if(!$categoriaSeleccionada){
         $categoriaSeleccionada = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT);
     }

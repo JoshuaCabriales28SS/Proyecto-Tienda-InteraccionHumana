@@ -38,47 +38,47 @@
     incluirTemplate('header');
 ?>
 
-    <main class="productos_admin" id="main-content">
-        <div class="contenedor">
-            <h1>Administrador de Inventario</h1>
-            
-            <?php if(intval($resultado) === 1):?>
-                <p class="alerta exito" role="status">Producto añadido correctamente</p>
-            <?php elseif(intval($resultado) === 2):?>
-                <p class="alerta exito" role="status">Producto editado correctamente</p>
-            <?php elseif(intval($resultado) === 3):?>
-                <p class="alerta exito" role="status">Producto eliminado correctamente</p>
-            <?php endif; ?>
+<main class="productos_admin" id="main-content">
+    <div class="contenedor">
+        <h1>Administrador de Inventario</h1>
+        
+        <?php if(intval($resultado) === 1):?>
+            <p class="alerta exito" role="status">Producto añadido correctamente</p>
+        <?php elseif(intval($resultado) === 2):?>
+            <p class="alerta exito" role="status">Producto editado correctamente</p>
+        <?php elseif(intval($resultado) === 3):?>
+            <p class="alerta exito" role="status">Producto eliminado correctamente</p>
+        <?php endif; ?>
 
-            <div class="interacciones-admin">
-                <a class="btn btn-verdeOsc btn-agregar" href="/admin/productos/crear.php">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        >
-                        <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14zm8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z" />
-                    </svg>
-                    <p>Añadir</p>
-                </a>
-            </div>
+        <div class="interacciones-admin">
+            <a class="btn btn-verdeOsc btn-agregar" href="/admin/productos/crear.php">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    >
+                    <path d="M4.929 4.929a10 10 0 1 1 14.141 14.141a10 10 0 0 1 -14.14 -14.14zm8.071 4.071a1 1 0 1 0 -2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0 -2h-2v-2z" />
+                </svg>
+                <p>Añadir</p>
+            </a>
+        </div>
 
-            <div class="tabla-responsive">
-                <table class="productos-tabla">
-                    <thead>
-                        <tr>
-                            <th>Stock</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Descripción</th>
-                            <th>Codigo de Barras</th>
-                            <th>Imagen</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div class="tabla-responsive">
+            <table class="productos-tabla">
+                <thead>
+                    <tr>
+                        <th>Stock</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Descripción</th>
+                        <th>Codigo de Barras</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <?php while($producto = mysqli_fetch_assoc($resultadoProductos)): ?>
                         <tr class="tr">
                             <td> <?php echo $producto['stock']; ?> </td>
@@ -124,10 +124,10 @@
                                         </button>
                                         <div class="ventana_eliminar" id="ventanaEliminar">
                                             <div class="eliminar">
-                                                <h2 for="">¿Eliminar <?php echo $producto['nombre']; ?>?</h2>
+                                                <h2 for="">¿Estas seguro que deseas eliminar <?php echo $producto['nombre']; ?>?</h2>
                                                 
                                                 <div class="btns_confirmar">
-                                                    <button class="btn btn-gris btn_cerrarEliminar" id="cerrarEliminar">Cancelar</button>
+                                                    <button class="btn btn-cancelar" id="cerrarEliminar">Cancelar</button>
                                                     
                                                     <form method="POST">
                                                         <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
@@ -141,11 +141,11 @@
                             </td>
                         </tr>
                     <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
-    </main>
+    </div>
+</main>
 
 <?php
     mysqli_close($db);
