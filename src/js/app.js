@@ -1,26 +1,27 @@
+// BOTONES PARA CONFIRMAR ELIMINACION
 const eliminaciones = document.querySelectorAll(".eliminacion");
-
 eliminaciones.forEach(eliminacion => {
-    const btnAbrir = eliminacion.querySelector("#mostrarEliminar");
-    const ventana = eliminacion.querySelector("#ventanaEliminar");
-    const btnCerrar = eliminacion.querySelector("#cerrarEliminar");
+    const btnAbrirEliminar = eliminacion.querySelector("#mostrarEliminar");
+    const ventanaEliminar = eliminacion.querySelector("#ventanaEliminar");
+    const btnCerrarEliminar = eliminacion.querySelector("#cerrarEliminar");
 
-    btnAbrir.addEventListener("click", () => {
-        ventana.style.display = "flex";
+    btnAbrirEliminar.addEventListener("click", () => {
+        ventanaEliminar.style.display = "flex";
     });
 
-    btnCerrar.addEventListener("click", () => {
-        ventana.style.display = "none";
+    btnCerrarEliminar.addEventListener("click", () => {
+        ventanaEliminar.style.display = "none";
     });
 
-    ventana.addEventListener("click", (e) => {
-        if (e.target === ventana) {
-            ventana.style.display = "none";
+    ventanaEliminar.addEventListener("click", (e) => {
+        if (e.target === ventanaEliminar) {
+            ventanaEliminar.style.display = "none";
         }
     });
 });
 
 
+// BOTONES PARA CARRITO
 const carrito = document.getElementById('carrito');
 const overlay = document.getElementById('overlay');
 const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
@@ -124,4 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
       form.submit();
     });
   });
+});
+
+
+// BOTONES PARA CONFIRMAR PAGO
+const pagar = document.getElementById("pagar");
+const btnAbrirPago = document.getElementById("mostrarPagar");
+const btnCerrarPago = document.getElementById("cerrarPagar");
+const ventanaPago = document.getElementById("ventanaPagar");
+btnAbrirPago.addEventListener("click", (e) => {
+  e.preventDefault();
+  ventanaPago.style.display = "flex";
+});
+btnCerrarPago.addEventListener("click", (e) => {
+  e.preventDefault();
+  ventanaPago.style.display = "none";
 });

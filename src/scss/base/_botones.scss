@@ -87,6 +87,24 @@
         background-color: variables.$rojoOsc;
     }
 }
+.btn-amarillo {
+    background-color: variables.$amarillo;
+    color: black;
+
+    &:hover {
+        background-color: variables.$amarilloOsc;
+        color: white;
+    }
+}
+.btn-gris {
+    background-color: variables.$gris;
+    color: black;
+
+    &:hover {
+        background-color: variables.$grisOscuro;
+        color: black;
+    }
+}
 .btn-ghost{
     background-color: transparent;
     color: variables.$negro;
@@ -121,10 +139,28 @@
     color: variables.$negro;
 }
 .btn-agregar{
-    width: 8rem;
+    margin: 1rem 0;
+    width: 9rem;
     justify-content: center;
     gap: .5rem;
     align-items: center;
+}
+.btn-cancelar {
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+}
+.btn-pagar{
+    margin: 1.6rem 0 0;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+
+    &-min {
+        width: 9rem;
+        text-transform: uppercase;
+    }
 }
 .is-disabled{
     opacity: .5;
