@@ -106,7 +106,7 @@
                 <fieldset>
                     <div class="campo">
                         <label for="tarjeta">Numero de tarjeta:</label>
-                        <input type="number" id="tarjeta" name="tarjeta" inputmode="numeric" autocomplete="cc-number" required placeholder="1234 5678 1234 5678">
+                        <input type="text" id="tarjeta" name="tarjeta"  inputmode="numeric" autocomplete="cc-number" required maxlength="19" placeholder="1234 5678 1234 5678">
                     </div>
                     <div class="campo">
                         <label for="cvv">CVV:</label>

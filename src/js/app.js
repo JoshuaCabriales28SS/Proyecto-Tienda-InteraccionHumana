@@ -141,3 +141,24 @@ btnCerrarPago.addEventListener("click", (e) => {
   e.preventDefault();
   ventanaPago.style.display = "none";
 });
+
+
+// ACOMODAR NUMEROS DE TARJETA
+const tarjeta = document.getElementById("tarjeta");
+
+tarjeta.addEventListener("input", (e) => {
+  let target = e.target;
+  let value = target.value.replace(/\D/g, '');
+  let formattedValue = '';
+
+  value = value.substring(0, 16);
+
+  for (let i = 0; i < value.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+          formattedValue += ' ';
+      }
+      formattedValue += value[i];
+  }
+
+  target.value = formattedValue;
+});
