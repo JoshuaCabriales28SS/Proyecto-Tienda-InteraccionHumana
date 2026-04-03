@@ -106,11 +106,11 @@
                 <fieldset>
                     <div class="campo">
                         <label for="tarjeta">Numero de tarjeta:</label>
-                        <input type="number" id="tarjeta" name="tarjeta" inputmode="numeric" autocomplete="cc-number" required>
+                        <input type="number" id="tarjeta" name="tarjeta" inputmode="numeric" autocomplete="cc-number" required placeholder="1234 5678 1234 5678">
                     </div>
                     <div class="campo">
                         <label for="cvv">CVV:</label>
-                        <input type="password" id="cvv" name="cvv" inputmode="numeric" autocomplete="cc-csc" required>
+                        <input type="password" id="cvv" name="cvv" inputmode="numeric" autocomplete="cc-csc" required maxlength="3" placeholder="123">
                     </div>
                     <div class="campo">
                         <label for="expiracion">Fecha de expiracion</label>
