@@ -146,14 +146,6 @@
                                         <form class="carrito-item-form" method="POST" action="/carrito.php">
                                             <input type="hidden" name="producto_id" value="<?php echo $producto['producto_id']; ?>">
                                             <input type="hidden" name="return_to" value="<?php echo htmlspecialchars($returnTo, ENT_QUOTES); ?>">
-                                            <label class="carrito-select">
-                                                <input type="checkbox" name="seleccionado" value="1" <?php echo $producto['seleccionado'] ? 'checked' : ''; ?> data-cart-select>
-                                                <span class="carrito-check">
-                                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                                        <path d="M5 12l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                </span>
-                                            </label>
                                             <img class="carrito-img" src="<?php echo obtenerImagenProducto($producto['imagen']); ?>" alt="<?php echo $producto['nombre']; ?>" loading="lazy">
                                             <div class="carrito-info">
                                                 <p class="carrito-nombre"><?php echo $producto['nombre']; ?></p>
@@ -163,11 +155,6 @@
                                                 </div>
                                             </div>
                                             <p class="carrito-subtotal">$<?php echo number_format($producto['precio'] * $producto['cantidad'], 2, ".", ","); ?></p>
-                                            <button type="submit" name="accion" value="eliminar" class="carrito-btn carrito-eliminar" aria-label="Eliminar producto">
-                                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                                    <path d="M4 7h16M9 7V5h6v2M8 7l1 12h6l1-12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-                                            </button>
                                         </form>
                                     </li>
                                 <?php endforeach; ?>
