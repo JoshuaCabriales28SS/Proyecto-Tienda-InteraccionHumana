@@ -4,7 +4,8 @@
   "description": "Proyecto de Laboratorio Tematico 1 - Tienda Online",
   "main": "gulpfile.js",
   "scripts": {
-    "dev": "gulp"
+    "dev": "gulp",
+    "build": "gulp css && gulp javascript"
   },
   "keywords": [
     "SASS",
