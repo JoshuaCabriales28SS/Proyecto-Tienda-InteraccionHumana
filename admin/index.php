@@ -2,7 +2,6 @@
     require '../includes/app.php';
     estaAutenticado();
 
-    // Conectar a BD
     $db = conectarDB();
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -11,7 +10,6 @@
         $id = filter_var($id, FILTER_VALIDATE_INT);
         
         if($id){
-            //eliminar archivo
             $query = "SELECT imagen FROM productos WHERE id = $id";
             $resultado = mysqli_query($db, $query);
             $producto = mysqli_fetch_assoc($resultado);
@@ -20,7 +18,6 @@
                 unlink($rutaImagen);
             }
             
-            //eliminar propiedad
             $query = "DELETE FROM productos WHERE id=$id";
             $resultado = mysqli_query($db, $query);
             if($resultado){

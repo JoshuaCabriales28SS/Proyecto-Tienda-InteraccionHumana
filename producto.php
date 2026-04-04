@@ -1,12 +1,7 @@
 <?php
     require 'includes/app.php';
-
     $db = conectarDB();
-
-    //obtener id de la variable que se paso
     $id = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT);
-    
-    //si no hay id, se redirecciona
     if(!$id){
         header('Location: /index.php');
         exit;
@@ -15,7 +10,6 @@
     $query = "SELECT * FROM productos WHERE id=$id";
     $resultado = mysqli_query($db, $query);
     $producto = $resultado ? mysqli_fetch_assoc($resultado) : null;
-
     if(!$producto){
         header('Location: /index.php');
         exit;
@@ -45,7 +39,6 @@
         }elseif($cantidad > (int) $producto['stock']){
             $errores[] = "La cantidad supera el stock disponible";
         }
-
         if(empty($errores)){
             $queryExistente = "SELECT id, cantidad FROM carrito WHERE productos_id = $producto_id LIMIT 1";
             $resultadoExistente = mysqli_query($db, $queryExistente);
@@ -63,7 +56,6 @@
                 $queryProd = "INSERT INTO carrito (productos_id, cantidad) VALUES ('$producto_id', '$cantidad')";
                 $resultadoProd = mysqli_query($db, $queryProd);
             }
-
             if(empty($errores) && !empty($resultadoProd)){
                 if(session_status() === PHP_SESSION_NONE){
                     session_start();
@@ -75,7 +67,6 @@
                         $_SESSION['carrito_seleccion'] = $seleccion;
                     }
                 }
-
                 header('Location: /producto.php?id=' . $producto_id . '&agregado=1');
                 exit;
             }

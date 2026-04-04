@@ -1,12 +1,7 @@
 <?php
     require './includes/app.php';
-
-    if(session_status() === PHP_SESSION_NONE){
-        session_start();
-    }
-
+    if(session_status() === PHP_SESSION_NONE){ session_start(); }
     $db = conectarDB();
-
     $seleccionActiva = array_key_exists('carrito_seleccion', $_SESSION) && is_array($_SESSION['carrito_seleccion']);
     $seleccion = $seleccionActiva ? array_map('intval', $_SESSION['carrito_seleccion']) : [];
 
@@ -16,28 +11,21 @@
                 header('Location: /carrito.php');
                 exit;
             }
-
             $ids = implode(',', $seleccion);
             $query = "DELETE FROM carrito WHERE productos_id IN ($ids)";
             $resultado = mysqli_query($db, $query);
 
-            if(isset($_SESSION['carrito_seleccion']) && is_array($_SESSION['carrito_seleccion'])){
-                $_SESSION['carrito_seleccion'] = array_values(array_diff($_SESSION['carrito_seleccion'], $seleccion));
-            }
+            if(isset($_SESSION['carrito_seleccion']) && is_array($_SESSION['carrito_seleccion'])){ $_SESSION['carrito_seleccion'] = array_values(array_diff($_SESSION['carrito_seleccion'], $seleccion)); }
         }else{
             $query = "DELETE FROM carrito";
             $resultado = mysqli_query($db, $query);
         }
-
         if($resultado){
             header('Location: /index.php');
             exit;
         }
     }
-
-    if($seleccionActiva && empty($seleccion)){
-        $productosCarrito = [];
-    }else{
+    if($seleccionActiva && empty($seleccion)){ $productosCarrito = []; }else{
         $query = "SELECT carrito.id, carrito.cantidad, productos.nombre, productos.precio, productos.imagen
                   FROM carrito
                   JOIN productos ON carrito.productos_id = productos.id";
@@ -48,13 +36,9 @@
         $resultado = mysqli_query($db, $query);
         $productosCarrito = $resultado ? mysqli_fetch_all($resultado, MYSQLI_ASSOC) : [];
     }
-
     $cantidadSeleccion = 0;
-    foreach($productosCarrito as $producto){
-        $cantidadSeleccion += (int) $producto['cantidad'];
-    }
+    foreach($productosCarrito as $producto){ $cantidadSeleccion += (int) $producto['cantidad']; }
     $total = 0;
-
     incluirTemplate('header');
 ?>
 

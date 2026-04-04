@@ -4,14 +4,14 @@
     define('FUNCIONES_URL', __DIR__ . '/funciones.php');
 
     //funciones
-    function incluirTemplate(string $nombre, bool $inicio=false){
+    function incluirTemplate(string $nombre){
         include TEMPLATES_URL."/$nombre.php";
     }
     function debuguear($variable){
         echo "<pre>";
         var_dump($variable);
         echo "</pre>";
-        // exit;
+        exit;
     }
     function obtenerImagenProducto(?string $imagen): string{
         $imagen = trim((string) $imagen);

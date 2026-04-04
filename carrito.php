@@ -1,12 +1,9 @@
 <?php
     require 'includes/app.php';
-
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     }
-
     $db = conectarDB();
-
     function obtenerIdsCarrito(mysqli $db): array{
         $ids = [];
         $resultado = mysqli_query($db, "SELECT productos_id FROM carrito");
@@ -17,7 +14,6 @@
         }
         return $ids;
     }
-
     function sanitizarReturnTo(string $returnTo): string{
         $returnTo = trim($returnTo);
         if($returnTo === '' || substr($returnTo, 0, 1) !== '/' || substr($returnTo, 0, 2) === '//'){
@@ -25,7 +21,6 @@
         }
         return $returnTo;
     }
-
     $accion = $_POST['accion'] ?? null;
     $productoId = filter_var($_POST['productos_id'] ?? null, FILTER_VALIDATE_INT);
     $returnTo = sanitizarReturnTo($_POST['return_to'] ?? '/carrito.php');
@@ -39,7 +34,6 @@
                 $_SESSION['carrito_seleccion'] = array_values(array_diff($_SESSION['carrito_seleccion'], [$productoId]));
             }
         }
-
         if(($accion === 'incrementar' || $accion === 'decrementar') && $productoId){
             $query = "SELECT carrito.id, carrito.cantidad, productos.stock
                       FROM carrito
@@ -58,7 +52,6 @@
                     $query = "UPDATE carrito SET cantidad = $nuevaCantidad WHERE id = {$item['id']}";
                     mysqli_query($db, $query);
                 }
-
                 if($accion === 'decrementar'){
                     if($cantidadActual > 1){
                         $nuevaCantidad = $cantidadActual - 1;
@@ -72,39 +65,21 @@
                 }
             }
         }
-
         if($accion === 'seleccionar' && $productoId){
             $seleccion = $_SESSION['carrito_seleccion'] ?? null;
             $seleccionado = isset($_POST['seleccionado']);
 
-            if(!is_array($seleccion)){
-                $seleccion = obtenerIdsCarrito($db);
-            }
-
+            if(!is_array($seleccion)){ $seleccion = obtenerIdsCarrito($db); }
             $seleccion = array_map('intval', $seleccion);
-            if($seleccionado && !in_array($productoId, $seleccion, true)){
-                $seleccion[] = $productoId;
-            }
-            if(!$seleccionado){
-                $seleccion = array_values(array_diff($seleccion, [$productoId]));
-            }
-
+            if($seleccionado && !in_array($productoId, $seleccion, true)){ $seleccion[] = $productoId; }
+            if(!$seleccionado){ $seleccion = array_values(array_diff($seleccion, [$productoId])); }
             $_SESSION['carrito_seleccion'] = $seleccion;
         }
 
-        if($accion === 'seleccionar_todo'){
-            $_SESSION['carrito_seleccion'] = obtenerIdsCarrito($db);
-        }
-
-        if($accion === 'limpiar_seleccion'){
-            $_SESSION['carrito_seleccion'] = [];
-        }
-
+        if($accion === 'seleccionar_todo'){ $_SESSION['carrito_seleccion'] = obtenerIdsCarrito($db); }
+        if($accion === 'limpiar_seleccion'){ $_SESSION['carrito_seleccion'] = []; }
         $idsActuales = obtenerIdsCarrito($db);
-        if(empty($idsActuales)){
-            unset($_SESSION['carrito_seleccion']);
-        }
-
+        if(empty($idsActuales)){ unset($_SESSION['carrito_seleccion']); }
         header('Location: ' . $returnTo);
         exit;
     }
@@ -115,7 +90,6 @@
               JOIN productos ON carrito.productos_id = productos.id";
     $resultado = mysqli_query($db, $query);
     $carrito = $resultado ? mysqli_fetch_all($resultado, MYSQLI_ASSOC) : [];
-
     $seleccionActiva = array_key_exists('carrito_seleccion', $_SESSION) && is_array($_SESSION['carrito_seleccion']);
     $seleccion = $seleccionActiva ? array_map('intval', $_SESSION['carrito_seleccion']) : [];
     $carritoDetalle = [];
@@ -127,24 +101,19 @@
     foreach($carrito as $producto){
         $totalCarrito += (float) $producto['precio'] * (int) $producto['cantidad'];
         $totalCantidad += (int) $producto['cantidad'];
-
         $seleccionado = !$seleccionActiva || in_array((int) $producto['productos_id'], $seleccion, true);
         $producto['seleccionado'] = $seleccionado;
-
         if($seleccionado){
             $totalSeleccion += (float) $producto['precio'] * (int) $producto['cantidad'];
             $cantidadSeleccion += (int) $producto['cantidad'];
         }
-
         $carritoDetalle[] = $producto;
     }
-
     if(empty($carrito) && $seleccionActiva){
         unset($_SESSION['carrito_seleccion']);
         $seleccionActiva = false;
         $seleccion = [];
     }
-
     $puedePagar = $seleccionActiva ? $cantidadSeleccion > 0 : !empty($carrito);
 
     incluirTemplate('header');

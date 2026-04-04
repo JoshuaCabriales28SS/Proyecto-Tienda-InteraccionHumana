@@ -1,10 +1,8 @@
 <?php
     require 'includes/app.php';
 
-    //obtener id de la variable que se paso
     $id = filter_var($_GET['id'] ?? null, FILTER_VALIDATE_INT);
     
-    //si no hay id, se redirecciona
     if(!$id){
         header('Location: /index.php');
         exit;
@@ -12,7 +10,6 @@
 
     $db = conectarDB();
     
-    // Pedir nombre de categoria
     $queryCat = "SELECT * from categorias where id=$id";
     $resultadoCat = mysqli_query($db, $queryCat);
     $categoria = $resultadoCat ? mysqli_fetch_assoc($resultadoCat) : null;
@@ -57,12 +54,9 @@
     $whereSql = "WHERE " . implode(' AND ', $condiciones);
     $query = "SELECT * from productos $whereSql $orderSql";
 
-    // LEER RESULTADOS
     $resultado = mysqli_query($db, $query);
     $productos = $resultado ? mysqli_fetch_all($resultado, MYSQLI_ASSOC) : [];
-?>
 
-<?php
     incluirTemplate('header');
 ?>
 
