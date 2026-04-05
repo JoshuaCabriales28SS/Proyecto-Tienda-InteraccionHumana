@@ -97,8 +97,12 @@
                         <input type="password" id="cvv" name="cvv" inputmode="numeric" autocomplete="cc-csc" required maxlength="3" placeholder="123">
                     </div>
                     <div class="campo">
-                        <label for="expiracion">Fecha de expiracion</label>
+                        <label for="expiracion">Fecha de expiracion:</label>
                         <input type="month" name="expiracion" id="expiracion" autocomplete="cc-exp" required>
+                    </div>
+                    <div class="campo">
+                        <label for="codigo">Código Promocional:</label>
+                        <input type="text" id="codigo">
                     </div>
                 </fieldset>
 

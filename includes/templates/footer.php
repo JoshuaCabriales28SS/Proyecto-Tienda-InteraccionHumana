@@ -3,7 +3,7 @@
             <div class="footer-grid">
                 <div>
                     <h3>Atencion al cliente</h3>
-                    <a href="/index.php">Centro de ayuda</a>
+                    <a href="/dudas.php">Centro de ayuda</a>
                     <a href="/index.php">Devoluciones</a>
                     <a href="/index.php">Envios</a>
                 </div>
@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     <h3>Shop-Corner</h3>
-                    <a href="/index.php">Trabaja con nosotros</a>
+                    <a href="/nosotros.php">Sobre Nosotros</a>
                     <a href="/index.php">Garantias</a>
                     <a href="/index.php">Sostenibilidad</a>
                 </div>

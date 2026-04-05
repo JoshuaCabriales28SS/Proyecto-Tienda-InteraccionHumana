@@ -1,0 +1,96 @@
+@use 'base/variables';
+
+.nosotros-info {
+    margin: 3rem 5rem 0 5rem;
+    background-color: variables.$azul;
+    padding: 1rem .5rem;
+    border-radius: .5rem;
+    text-align: center;
+    color: white;
+}
+.n-historia {
+    margin-top: 3rem;
+    background-color: variables.$gris;
+    height: 10rem;
+    text-align: center;
+
+    &-contenido {
+        align-items: center;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 1rem 4rem;
+
+        p {
+            text-align: left;
+        }
+    }
+}
+.n-secciones {
+    margin: 2rem 4rem 0 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    .seccion {
+        border-radius: .8rem;
+        background-color: variables.$naranja;
+        color: white;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem 4rem;
+        height: 15rem;
+        text-align: center;
+        justify-content: space-around;
+        box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+        -webkit-box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+        -moz-box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+    }
+}
+.n-equipo {
+    background-color: variables.$azulMarino;
+    color: white;
+    height: 25rem;
+    margin-top: 3rem;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.equipo-contenido{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+.e-integrante {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 13rem;
+    height: 13rem;
+    margin: 0 auto;
+    justify-content: center;
+    transition: .3s;
+    
+    &:hover {
+        transition: .3s;
+        background-color: white;
+        color: variables.$azulMarino;
+        transform: translateY(-10px);
+        box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+        -webkit-box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+        -moz-box-shadow: 11px 10px 21px 0px rgba(0,0,0,0.8);
+    }
+}
+.n-comprar {
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: center;
+    justify-content: center;
+    gap: 4rem;
+    height: 10rem;
+    align-items: center;
+}

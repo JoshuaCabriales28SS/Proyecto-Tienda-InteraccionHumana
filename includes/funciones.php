@@ -4,7 +4,7 @@
     define('FUNCIONES_URL', __DIR__ . '/funciones.php');
 
     //funciones
-    function incluirTemplate(string $nombre){
+    function incluirTemplate(string $nombre, bool $categorias = true){
         include TEMPLATES_URL."/$nombre.php";
     }
     function debuguear($variable){
