@@ -1,12 +1,6 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-RUN docker-php-ext-install pdo pdo_mysql mysqli
-
-# Desactiva el MPM extra y deja solo prefork
-RUN a2dismod mpm_event mpm_worker 2>/dev/null || true && \
-    a2enmod mpm_prefork
-
-RUN a2enmod rewrite
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY . /var/www/html/
 
