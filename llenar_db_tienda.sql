@@ -2,6 +2,11 @@
 CREATE DATABASE IF NOT EXISTS db_tiendaonline_crud;
 USE db_tiendaonline_crud;
 
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(45) NOT NULL,
+    password VARCHAR(100)
+);
 
 CREATE TABLE categorias (
                             id INT AUTO_INCREMENT PRIMARY KEY,
