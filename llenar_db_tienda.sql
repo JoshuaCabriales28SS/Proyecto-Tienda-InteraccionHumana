@@ -2,6 +2,11 @@
 CREATE DATABASE IF NOT EXISTS db_tiendaonline_crud;
 USE db_tiendaonline_crud;
 
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(45) NOT NULL,
+    password VARCHAR(100)
+);
 
 CREATE TABLE categorias (
                             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,9 +21,9 @@ CREATE TABLE productos (
                            imagen VARCHAR(255),
                            descripcion TEXT,
                            codigo VARCHAR(50),
-                           categoria_id INT,
+                           categorias_id INT,
                            stock INT DEFAULT 0,
-                           FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+                           FOREIGN KEY (categorias_id) REFERENCES categorias(id)
 );
 
 
@@ -39,13 +44,13 @@ INSERT INTO categorias (nombre) VALUES
 
 CREATE TABLE carrito (
                          id INT AUTO_INCREMENT PRIMARY KEY,
-                         producto_id INT,
+                         productos_id INT,
                          cantidad INT DEFAULT 1,
                          fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                         FOREIGN KEY (producto_id) REFERENCES productos(id)
+                         FOREIGN KEY (productos_id) REFERENCES productos(id)
 );
 
-INSERT INTO productos (nombre, precio, imagen, descripcion, codigo, categoria_id, stock) VALUES
+INSERT INTO productos (nombre, precio, imagen, descripcion, codigo, categorias_id, stock) VALUES
 
                                                                                              ('Laptop HP',14500.00,'laptop.jpg','Laptop portátil ideal para trabajo y estudio con 8GB RAM','1234567890',1,10),
                                                                                              ('Mouse Logitech',350.00,'mouse.jpg','Mouse inalámbrico ergonómico','1234567891',9,25),
