@@ -39,10 +39,10 @@ INSERT INTO categorias (nombre) VALUES
 
 CREATE TABLE carrito (
                          id INT AUTO_INCREMENT PRIMARY KEY,
-                         producto_id INT,
+                         productos_id INT,
                          cantidad INT DEFAULT 1,
                          fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                         FOREIGN KEY (producto_id) REFERENCES productos(id)
+                         FOREIGN KEY (productos_id) REFERENCES productos(id)
 );
 
 INSERT INTO productos (nombre, precio, imagen, descripcion, codigo, categoria_id, stock) VALUES
