@@ -2,8 +2,6 @@
     require '../includes/app.php';
     estaAutenticado();
 
-    $db = conectarDB();
-
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         
         $id = $_POST['id'];
