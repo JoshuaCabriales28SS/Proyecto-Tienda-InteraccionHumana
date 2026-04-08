@@ -1,87 +1,44 @@
 <?php
-    require '../../includes/app.php';
+
+    require './includes/app.php';
+
+    use Intervention\Image\Drivers\Gd\Driver;
+    use Intervention\Image\ImageManager as Image;
+    use Model\Producto;
+
     estaAutenticado();
 
     $db = conectarDB();
 
-    // SOLICITAR CATEGORIAS DISPONIBLES
     $queryCat = "SELECT * FROM categorias";
-    $resultadoCategorias = mysqli_query($db, $queryCat);
+    $resultadoCategorias = $db->query($queryCat);
 
-    // ERRORES
-    $errores = [];
+    $errores = Producto::getErrores();
 
-    // VARIABLES PARA GUARDAR DATOS
-    $stock = '';
-    $nombre = '';
-    $precio = '';
-    $descripcion = '';
-    $categoria_id = '';
-
-    // SE EJECUTA AL MOMENTO DE ENVIAR LOS DATOS
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        //Asignar archivos a una variable, la variable es igual a la imagen subida
-        $imagen = $_FILES['imagen'];
-        $medida = 1000*1000;
+        
+        $producto = new Producto($_POST);
+        
+        $nombreImagen = md5( uniqid( rand(), true) ). ".jpg";
 
-        // TOMA VALORES DE LOS CAMPOS
-        $stock = mysqli_real_escape_string($db, $_POST['stock']);
-        $nombre = mysqli_real_escape_string($db, $_POST['nombre']);
-        $precio = mysqli_real_escape_string($db, $_POST['precio']);
-        $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-        $categoria_id = mysqli_real_escape_string($db, $_POST['categoria_id']);
-
-        // VALIDACIÓN DE IMAGEN
-        if(!$imagen['name'] || $imagen['error']){
-            $errores[] = "Debes añadir una imagen";
-        }
-        if($imagen['size']>$medida){
-            $errores[] = "La imagen es muy pesada";
+        if($_FILES['imagen']['tmp_name']) {
+            $manager = new Image(Driver::class);
+            $imagen = $manager->read($_FILES['imagen']['tmp_name'])->scale(800, 600);
         }
 
-        // VALIDACIÓN DE DATOS
-        if(!$stock){
-            $errores[] = "Debes añadir una cantidad";
-        }
-        if(!$nombre){
-            $errores[] = "Debes añadir un nombre";
-        }
-        if(!$precio){
-            $errores[] = "Debes añadir un precio";
-        }
-        if(strlen($descripcion) < 50){
-            $errores[] = "Debes añadir una descripcion y debe tener al menos 50 caracteres";
-        }
-        if(!$categoria_id){
-            $errores[] = "Debes elegir una categoria";
-        }
+        $errores = $producto->validar();
+        
 
-        // REVISAR ARREGLO DE ERRORES
         if(empty($errores)){
+            
             $carpetaImagenes = '../../images/';
-
-            //subir foto a carpeta interna
+                
             if(!is_dir($carpetaImagenes)){
-                mkdir($carpetaImagenes, 0755, true); // SI NO EXISTE LA CARPETA, SE CREA
+                mkdir($carpetaImagenes, 0755, true);
             }
 
-            // GENERAR NOMBRE PARA IMAGEN
-            $nombreImagen = md5( uniqid( rand(), true) ). ".jpg";
-
-            // MOVER LA IMAGEN A LA CARPETA
-            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-            
-            //GENERAR CODIGO DE BARRAS DEL PRODUCTO
-            $codigoBarras = "";
-            for ($i=0; $i < 10; $i++){
-                $num = random_int(0,9);
-                $codigoBarras .= strval($num);
-            }
-            
-            $query = "INSERT INTO productos (stock, nombre, precio, imagen, descripcion, codigo, categorias_id) VALUES ('$stock','$nombre', '$precio', '$nombreImagen', '$descripcion', '$codigoBarras', '$categoria_id')";
-
-            $resultado = mysqli_query($db, $query);
-            
+            $resultado = $producto->guardar();
+                
             if($resultado){
                 // REDIRECCIONAR
                 header("Location: /admin/index.php?resultado=1");
@@ -179,11 +136,11 @@
 
                     <div class="campo">
                         <label for="categoria">Categoria:</label>
-                        <select name="categoria_id" required>
+                        <select name="categorias_id" required>
                             <option value="" disabled selected>-- Seleccionar --</option>
     
                             <?php while($categoria = mysqli_fetch_assoc($resultadoCategorias)): ?>
-                                <option <?php echo $categoria_id === $categoria['id'] ? 'selected' : ''; ?> value="<?php echo $categoria['id']; ?>">
+                                <option <?php echo $categorias_id === $categoria['id'] ? 'selected' : ''; ?> value="<?php echo $categoria['id']; ?>">
                                     <?php echo $categoria['nombre']; ?>
                                 </option>
                             <?php endwhile; ?>

@@ -69,11 +69,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- STYLE -->
-    <link rel="stylesheet" href="/build/css/app.css">
+    <link rel="stylesheet" href="/public/build/css/app.css">
 
     <!-- TITLE -->
     <title>Shop-Corner</title>
-    <link rel="icon" href="/build/img/icono.png" type="image/png">
+    <link rel="icon" href="/public/build/img/icono.png" type="image/png">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
@@ -81,7 +81,7 @@
         <div class="contenedor">
             <div class="header-contenido">
                 <a href="/index.php">
-                    <img src="/build/img/logo.png" alt="Logo Shop-Corner" type="image/png" class="logo">
+                    <img src="/public/build/img/logo.png" alt="Logo Shop-Corner" type="image/png" class="logo">
                 </a>
 
                 <form class="search" action="/index.php" method="GET" role="search">

@@ -1,0 +1,19 @@
+{
+    "name": "dev-joshua/proyecto-tienda-online-main",
+    "description": "tienda con mvc",
+    "type": "project",
+    "authors": [
+        {
+            "name": "DevJoshua",
+            "email": "joshuabenjamin.jbca@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Model\\": "./models"
+        }
+    }
+}

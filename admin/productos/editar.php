@@ -32,7 +32,7 @@
     $nombre = $producto['nombre'];
     $precio = $producto['precio'];
     $descripcion = $producto['descripcion'];
-    $categoria_id = $producto['categorias_id'];
+    $categorias_id = $producto['categorias_id'];
     
     // SE EJECUTA AL MOMENTO DE ENVIAR LOS DATOS
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -45,7 +45,7 @@
         $nombre = mysqli_real_escape_string($db, $_POST['nombre']);
         $precio = mysqli_real_escape_string($db, $_POST['precio']);
         $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-        $categoria_id = mysqli_real_escape_string($db, $_POST['categoria_id']);
+        $categorias_id = mysqli_real_escape_string($db, $_POST['categorias_id']);
 
         $nuevaImagen = $imagen['name'] ?? '';
 
@@ -70,7 +70,7 @@
         if(strlen($descripcion) < 50){
             $errores[] = "Debes añadir una descripcion y debe tener al menos 50 caracteres";
         }
-        if(!$categoria_id){
+        if(!$categorias_id){
             $errores[] = "Debes elegir una categoria";
         }
 
@@ -103,7 +103,7 @@
             //GENERAR CODIGO DE BARRAS DEL PRODUCTO
             $codigoBarras = $producto['codigo'];
 
-            $queryProd = "UPDATE productos SET stock=$stock, nombre='$nombre', precio=$precio, imagen='$nombreImagen', descripcion='$descripcion', codigo='$codigoBarras', categorias_id=$categoria_id WHERE id=$id";
+            $queryProd = "UPDATE productos SET stock=$stock, nombre='$nombre', precio=$precio, imagen='$nombreImagen', descripcion='$descripcion', codigo='$codigoBarras', categorias_id=$categorias_id WHERE id=$id";
 
             $resultadoProd = mysqli_query($db, $queryProd);
             
@@ -203,11 +203,11 @@
 
                     <div class="campo">
                         <label for="categoria">Categoria:</label>
-                        <select name="categoria_id" required>
+                        <select name="categorias_id" required>
                             <option value="" disabled selected>-- Seleccionar --</option>
     
                             <?php while($categoria = mysqli_fetch_assoc($resultadoCategorias)): ?>
-                                <option <?php echo $categoria_id === $categoria['id'] ? 'selected' : ''; ?> value="<?php echo $categoria['id']; ?>">
+                                <option <?php echo $categorias_id === $categoria['id'] ? 'selected' : ''; ?> value="<?php echo $categoria['id']; ?>">
                                     <?php echo $categoria['nombre']; ?>
                                 </option>
                             <?php endwhile; ?>

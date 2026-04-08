@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="market-hero-banner">
-                <img src="/build/img/banner.jpg" alt="Promociones destacadas" loading="lazy">
+                <img src="/public/build/img/banner.jpg" alt="Promociones destacadas" loading="lazy">
                 <div class="hero-banner-info">
                     <p>Ofertas relampago</p>
                     <span>Hasta 40% off</span>
